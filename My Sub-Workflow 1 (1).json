@@ -1,0 +1,263 @@
+{
+  "name": "My Sub-Workflow 1",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "request"
+            }
+          ]
+        },
+        "returnOutput": "allRuns"
+      },
+      "id": "c055762a-8fe7-4141-a639-df2372f30060",
+      "typeVersion": 1.1,
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        480,
+        352
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.request }}",
+                    "rightValue": "skills",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "7d9d7df1-da28-4993-baaf-b1a17487a5b9"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "57874442-ccf3-4ad0-9289-20ab97e73f3a",
+                    "leftValue": "={{ $json.request }}",
+                    "rightValue": "projects",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "b40aa6da-3196-45b7-bc69-2d9b74694a2c",
+                    "leftValue": "={{ $json.request }}",
+                    "rightValue": "education",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "4d73f53c-7ce8-4357-87e2-0cdd769bf637",
+                    "leftValue": "={{ $json.request }}",
+                    "rightValue": "full_profile",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra"
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        704,
+        288
+      ],
+      "id": "7753d5cd-4f86-4e98-89ec-cc86e6c84d69",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"skills\": {\n    \"programming_and_core\": [\n      \"Python\",\n      \"JavaScript\",\n      \"Node.js\",\n      \"API Integration (via n8n)\",\n      \"Webhooks\"\n    ],\n    \"machine_learning_and_data\": [\n      \"Scikit-Learn\",\n      \"TensorFlow\",\n      \"Feature Engineering\",\n      \"Supervised/Unsupervised Learning\",\n      \"Pandas\",\n      \"NumPy\"\n    ],\n    \"agentic_ai_and_llms\": [\n      \"n8n Workflow Automation\",\n      \"Prompt Engineering\",\n      \"Dynamic Tool Binding\",\n      \"Context & Persistent Memory (MongoDB Atlas)\"\n    ],\n    \"tools_and_visualization\": [\n      \"Power BI\",\n      \"Jupyter\"\n    ],\n    \"personal_skills\": [\n      \"Technical Leadership: Directed core teams (2-5 members), delegated tasks, and oversaw end-to-end AI project execution.\",\n      \"System Architecture & Problem Solving: Resolved technical bottlenecks and optimized complex engineering pipelines, and engineered resilient automation pipelines.\",\n      \"Execution & Delivery: Orchestrated workflows and translated research concepts into functional applications.\"\n    ]\n  }\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        992,
+        96
+      ],
+      "id": "74018e6d-b43c-45ed-a035-5772ef6b2f2e",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"projects\": [\n    {\n      \"title\": \"AURA - Autonomous Enterprise Agentic Assistant with Persistent Memory\",\n      \"tech_stack\": [\"n8n\", \"Google Gemini API\", \"MongoDB Atlas\", \"Telegram Bot API\", \"Node.js\", \"Webhooks\", \"Gmail API\"],\n      \"description\": [\n        \"Engineered an enterprise-grade autonomous AI assistant integrating dynamic tool binding, long-term memory, and dynamic reasoning.\",\n        \"Implemented Human-In-The-Loop (HITL) approval gates using Telegram inline webhooks to verify automated dispatches safely.\",\n        \"Configured long-term persistent session mapping via MongoDB Atlas to maintain chat context across disconnected multi-turn sessions.\"\n      ]\n    },\n    {\n      \"title\": \"Mubser - AI Assistive System for Visually Impaired Pilgrims\",\n      \"tech_stack\": [\"Python\", \"AI Agents\", \"LLMs\", \"Google Gemini API\", \"FastAPI\"],\n      \"description\": [\n        \"Co-developed an AI-powered assistive system integrating autonomous agents and LLMs to assist visually impaired pilgrims.\",\n        \"Architected a hybrid LLM pipeline using Google Gemini API as a cloud fallback and connected automated voice/decision workflows.\"\n      ]\n    },\n    {\n      \"title\": \"NVIDIA Aegis Pulse - Autonomous Enterprise Risk Intelligence Agent\",\n      \"tech_stack\": [\"n8n\", \"Gemini API\", \"Google Sheets API\", \"Gmail\", \"Webhooks\", \"HTML/CSS\"],\n      \"description\": [\n        \"Built an agentic workflow analyzing market and regulatory signals to generate automated dynamic HTML executive reports.\",\n        \"Accelerated executive reporting cycles, reducing generation time from 2 hours to under 2 minutes.\"\n      ]\n    },\n    {\n      \"title\": \"LIGO Gravitational Wave Signal Classification & Bias Analysis\",\n      \"tech_stack\": [\"Python\", \"Scikit-Learn\", \"Random Forest\", \"Feature Engineering\", \"Power BI\"],\n      \"description\": [\n        \"Processed gravitational-wave signal data and developed a Random Forest classification model.\",\n        \"Identified model bias toward detector noise through post-training diagnostic evaluation.\",\n        \"Analyzed data imbalances and model failure modes, documenting findings and limitations in a technical report.\"\n      ]\n    },\n    {\n      \"title\": \"Pulsar Observation Data Clustering System\",\n      \"tech_stack\": [\"Python\", \"Scikit-Learn\", \"K-Means\", \"NumPy\", \"Pandas\"],\n      \"description\": [\n        \"Executed K-Means clustering on unlabeled astronomical datasets, achieving a 0.53 Silhouette Score.\"\n      ]\n    }\n  ]\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        992,
+        224
+      ],
+      "id": "1499904a-4531-44f4-8c70-08f1a7dbaff2",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"education\": {\n    \"degree\": \"Bachelor of Science in Data Science & Artificial Intelligence\",\n    \"institution\": \"University College of Applied Sciences\",\n    \"expected_graduation\": \"2027\",\n    \"relevant_coursework\": [\n      \"Machine Learning\",\n      \"Data Mining\",\n      \"Algorithms & Data Structures\",\n      \"Applied Physics\",\n      \"Data Science Programming\"\n    ]\n  }\n}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        1008,
+        352
+      ],
+      "id": "c27e7a46-f0ce-4700-aa7a-c2d357e32141",
+      "name": "Edit Fields2"
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "{\n  \"personal_info\": {\n    \"name\": \"Dalia Ammar Abu Iwaili\",\n    \"title\": \"Applied AI Engineer\",\n    \"location\": \"Cairo ,Egypt\",\n    \"email\": \"4421445735@gmail.com\",\n    \"links\": {\n      \"linkedin\": \"https://linkedin.com/in/dalia-ammar-4004\",\n      \"github\": \"https://github.com/dalia404\"\n    }\n  },\n  \"summary\": \"Data & AI Specialist focused on machine learning, AI agents, workflow automation, and intelligent data-driven systems. Experienced in building end-to-end solutions combining machine learning models, large language models (LLMs), APIs, and automated workflows.\",\n  \"education\": {\n    \"degree\": \"Bachelor of Science in Data Science & Artificial Intelligence\",\n    \"institution\": \"University College of Applied Sciences\",\n    \"expected_graduation\": \"2027\"\n  },\n  \"skills\": [\"Python\", \"JavaScript\", \"Scikit-Learn\", \"TensorFlow\", \"n8n\", \"Gemini API\", \"Ollama\", \"Power BI\", \"FastAPI\"],\n  \"projects_count\": 4\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        992,
+        496
+      ],
+      "id": "617b8577-5dde-41e9-829d-5169ffc3bc49",
+      "name": "Edit Fields3"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "1496f9f2-768a-4f13-84c5-9584b8b663f2",
+  "meta": {
+    "instanceId": "a47dbb0c130a6fe3f2b4d1976ea7e5a281f34f1741b268fe55ccd032e0df54b0"
+  },
+  "nodeGroups": [],
+  "id": "G6vTXnNFueoc9df1",
+  "tags": []
+}
